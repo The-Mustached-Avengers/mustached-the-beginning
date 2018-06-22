@@ -11,6 +11,29 @@ pipeline {
         sh 'java -version'
       }
     }
+    stage('Testing') {
+      failFast true
+      parallel {
+        stage('Java 8') {
+          agent {
+            label 'jdk 8'
+          }
+          steps {
+            sh 'java -version'
+            sleep(time: 10, unit: 'SECONDS')
+          }
+        }
+        stage('Java 9') {
+          agent {
+            label 'jdk 9'
+          }
+          steps {
+            sh 'java -version'
+            sleep(time: 10, unit: 'SECONDS')
+          }
+        }
+      }
+    }
   }
   environment {
     MY_NAME = 'Mustachio'
