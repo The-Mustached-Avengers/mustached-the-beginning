@@ -34,6 +34,11 @@ pipeline {
         }
       }
     }
+    stage('Checkpoint') {
+      steps {
+        checkpoint 'Checkpoint'
+      }
+    }
   }
   environment {
     MY_NAME = 'Mustachio'
